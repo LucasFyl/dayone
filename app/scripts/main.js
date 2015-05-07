@@ -9,7 +9,9 @@ $( document ).ready(function(){
         //Conditional script here
         console.log('It\'s Mobile !');
         $('body').addClass('mobile');
-        $('body').scrollTo(1);
+        setTimeout(function () {
+		  window.scrollTo(0, 1);
+		}, 500);
     } else {
         console.log('It\'s Not !');
     }

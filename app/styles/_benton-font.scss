@@ -1,0 +1,32 @@
+/* Bold */
+@font-face {
+	font-family: 'BentonSans-Bold';
+	src: url('../fonts/FontBureau-BentonSans-Bold.eot');
+}	
+
+@font-face {
+	font-family: 'BentonSans-Bold';
+	src: url('../fonts/FontBureau-BentonSans-Bold.woff') format('woff'),
+	url('../fonts/FontBureau-BentonSans-Bold.svg#BentonSans-Bold') format('svg');
+}
+@font-face {
+	font-family: 'BentonSans-Light';
+	src: url('FontBureau-BentonSans-Light.eot');
+}
+/* Light */
+@font-face {
+	font-family: 'BentonSans-Light';
+	src: url('FontBureau-BentonSans-Light.woff') format('woff'),
+	url('FontBureau-BentonSans-Light.svg#BentonSans-Light') format('svg');
+}
+/* Regular */
+@font-face {
+	font-family: 'BentonSans-Regular';
+	src: url('FontBureau-BentonSans-Regular.eot');
+}
+
+@font-face {
+	font-family: 'BentonSans-Regular';
+	src: url('FontBureau-BentonSans-Regular.woff') format('woff'),
+	url('FontBureau-BentonSans-Regular.svg#BentonSans-Regular') format('svg');
+}

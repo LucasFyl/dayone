@@ -1,0 +1,217 @@
+//*   Variables   *// 
+$body-color: #252627;
+$font-title-color: #fff;
+$font-second-color: #fe6562;
+$font-body-color: #fff;
+$title-font: 'BentonSans-Light', Helvetica, sans-serif;
+$title-font-reg: 'BentonSans-Regular', Helvetica, sans-serif;
+$body-font: 'BentonSans-Light', Helvetica, sans-serif;
+
+
+//*  general style  *// 
+html,body{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow-x: hidden;
+}
+body {
+    font-size: 100%;
+    font-size: 10px;
+    font-size: 1em;
+    background: $body-color;
+    color: $font-body-color;
+    font-family: $body-font;
+    text-align: center;
+}
+h1, h2, h3, h4, h5 {
+    color: $font-title-color; 
+    font-family: $title-font;
+    text-transform:uppercase;
+}
+h1 {font-size: 4em;}
+h2 {
+    font-size: 1.8em; 
+    font-family: $title-font-reg; 
+    letter-spacing: 1px;
+    @media screen and (device-aspect-ratio: 40/71) {font-size:1.6em;}
+}
+h4 {font-size: 1.4em;}
+p {font-size: 1.4em;}
+
+
+//*  Helpers class  *// 
+.smaller {font-size:1em;text-transform:uppercase;color: #fff;}
+.ir {text-indent: -9999px;}
+.font-red {color: $font-second-color;}
+.no-pad {
+    padding: 0;
+}
+@mixin quick-gradient ($origin: top, $alpha: 0.3) {
+    background-image: -webkit-linear-gradient($origin, rgba(0,0,0,$alpha), rgba(0,0,0,0.0));
+    background-image: -moz-linear-gradient($origin, rgba(0,0,0,$alpha), rgba(0,0,0,0.0));
+    background-image: -o-linear-gradient($origin, rgba(0,0,0,$alpha), rgba(0,0,0,0.0));
+    background-image: -ms-linear-gradient($origin, rgba(0,0,0,$alpha), rgba(0,0,0,0.0));
+    background-image: linear-gradient($origin, rgba(0,0,0,$alpha), rgba(0,0,0,0.0));
+}
+ 
+
+//*  custom style  *// 
+.slide {
+    width: 100%;
+    height: 100vh;
+    &:not(.landing) {
+        padding-top: 50px;
+        padding-bottom: 50px;
+        @media screen and (device-aspect-ratio: 40/71) {
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+
+    }
+    .watch {
+        float: none;
+        position: relative;
+        padding: 0;
+        margin-bottom: 50px;
+        @media screen and (device-aspect-ratio: 40/71) {
+            margin-bottom: 30px;
+        }
+
+
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+            &.screen {
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                margin: auto;
+            }
+        }
+        &:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    }
+    p {
+        margin-top: 15px;
+        padding: 0 10px;
+        @media screen and (device-aspect-ratio: 40/71) {
+            padding: 0;
+            font-size: 1.3em;
+        }
+    }
+    h2 + h2 {
+        margin-top: 5px;
+    }
+}
+
+.landing {
+    height: auto;
+    @include quick-gradient(top, 0.4);
+
+    .main-heading {
+        margin-bottom: 30px;
+    }
+    .logo {
+        width: 45px;height: 45px;
+        background: url(../images/logo-dayone.png) no-repeat center center;
+        display: block; margin: 30px auto 60px;
+        background-size: 100%;
+    }
+    .cta {
+        margin-top: 60px;
+        /*  Fallback for iPhone 2 -> 4S  */
+        @media screen and (device-aspect-ratio: 2/3) {margin-top: 40px;}
+        /* ..and iPhone 6 /6+ */ 
+        @media screen and (device-aspect-ratio: 375/667) {margin-top: 80px;}
+        @media screen and (device-aspect-ratio: 9/16) {margin-top: 80px;}
+
+        a {
+            width: 50px; height: 29px;
+            display: block;
+            background: url(../images/arrow-landing.png) no-repeat center center;
+            background-size: 100%;
+            margin: 10px auto 0;
+        }
+    }
+    span.apple {
+        width: 1em; height: 1.1em;
+        display: inline-block; margin: 0;padding: 0;
+        background: url(../images/logo-apple.png) no-repeat center center;
+        background-size: 100%;
+    }
+}
+.last {
+    height: auto;
+    .social {
+        margin: 50px 0;
+        a {
+            width: 85px; height: 85px;
+            display: block;margin: 15px auto;
+            border-radius: 100%;
+            border: 1px solid #fff;
+            position: relative;
+
+            margin-bottom: 40px;
+            background: url(../images/icon-mail.png) no-repeat center center;
+            background-size: 50%;
+            &:after {
+                content: "send email";
+                font-family: $title-font-reg;
+                text-transform: uppercase;
+                color: white;
+                font-size: 1.2em;
+                position: absolute;
+                top: 115%; left: 0;
+                width: 100%;
+                white-space: nowrap;
+            }
+        }
+        a + a {
+            background: url(../images/icon-facebook.png) no-repeat center center;
+            background-size: 50%;
+            &:after {
+                content: "facebook message";
+                left: -23px;
+            }
+        }
+    }
+    .social + p {
+        margin: 70px auto 0;
+        width: 80%;
+    }
+    .share {
+        color: $font-second-color !important;
+        display: block;
+        margin: 95px auto 50px;
+        position: relative;
+        font-size: 1.3em;
+        &:after {
+            content: " ";
+            width: 40px; height: 58px;
+            background: url(../images/icon-share.png) no-repeat center center;
+            position: absolute;
+            top: -60px;
+            left: 50%; margin-left: -20px;
+            background-size: 50%; 
+        }
+    }
+}
+footer {
+    $footerHeight: 2.5em;
+    height: $footerHeight;line-height: $footerHeight;
+    border-top: 1px solid rgba(255,255,255,0.6);
+    a {
+        color: white !important;
+        text-decoration: none !important;
+        &:active {
+            text-decoration: underline;
+        }
+    }
+}

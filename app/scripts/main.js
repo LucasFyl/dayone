@@ -9,6 +9,7 @@ $( document ).ready(function(){
         //Conditional script here
         console.log('It\'s Mobile !');
         $('body').addClass('mobile');
+        $('body').scrollTo(1);
     } else {
         console.log('It\'s Not !');
     }

@@ -1,3 +1,9 @@
+// .scriptDisabled {
+    .landing h4, .landing h1, .landing p, .cta, .slide#first .watch {opacity:0;}
+    // .scriptDisabled {
+    //     h4, h1, .landing p, .cta, .slide#first .watch {opacity:1;}
+    // }
+// }
 //*   Variables   *// 
 $body-color: #252627;
 $font-title-color: #fff;
@@ -71,9 +77,8 @@ p {font-size: 1.4em;}
 .smaller {font-size:1em;text-transform:uppercase;color: #fff;}
 .ir {text-indent: -9999px;}
 .font-red {color: $font-second-color;}
-.mobile .no-pad {
-    padding: 0;
-}
+.mobile .no-pad {padding: 0;}
+.hide-for-anim {opacity: 0;}
 @mixin quick-gradient ($origin: top, $alpha: 0.3) {
     background-image: -webkit-linear-gradient($origin, rgba(0,0,0,$alpha), rgba(0,0,0,0.0));
     background-image: -moz-linear-gradient($origin, rgba(0,0,0,$alpha), rgba(0,0,0,0.0));
@@ -274,3 +279,4 @@ footer {
         }
     }
 }
+

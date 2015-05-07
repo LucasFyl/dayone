@@ -3,6 +3,8 @@
   "private": true,
   "dependencies": {
     "jquery": "*",
-    "modernizr": "~2.8.2"
+    "modernizr": "~2.8.2",
+    "gsap": "1.16.1",
+    "bootstrap": "3.3.4"
   }
 }

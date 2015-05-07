@@ -7,13 +7,32 @@ $title-font: 'BentonSans-Light', Helvetica, sans-serif;
 $title-font-reg: 'BentonSans-Regular', Helvetica, sans-serif;
 $body-font: 'BentonSans-Light', Helvetica, sans-serif;
 
+//* Media Queries Breackpoints *// 
+
+// Extra small screen / phone
+$screen-xs:                  480px;
+$screen-xs-min:              $screen-xs;
+// Small screen / tablet
+$screen-sm:                  768px;
+$screen-sm-min:              $screen-sm;
+// Medium screen / desktop
+$screen-md:                  992px;
+$screen-md-min:              $screen-md;
+// Large screen / wide desktop
+$screen-lg:                  1200px;
+$screen-lg-min:              $screen-lg;
+// So media queries don't overlap when required, provide a maximum:
+$screen-xs-max:              ($screen-sm-min - 1);
+$screen-sm-max:              ($screen-md-min - 1);
+$screen-md-max:              ($screen-lg-min - 1);
+
 
 //*  general style  *// 
 html,body{
     width: 100%;
     height: 100%;
     position: relative;
-    overflow-x: hidden;
+    // overflow-x: hidden;
 }
 body {
     font-size: 100%;
@@ -23,6 +42,14 @@ body {
     color: $font-body-color;
     font-family: $body-font;
     text-align: center;
+    &.mobile {
+        // fix for unsmooth scroll issue
+        -webkit-overflow-scrolling: touch;
+    }
+
+    &:not(.mobile) {
+        font-size: 13px;
+    }
 }
 h1, h2, h3, h4, h5 {
     color: $font-title-color; 
@@ -44,7 +71,7 @@ p {font-size: 1.4em;}
 .smaller {font-size:1em;text-transform:uppercase;color: #fff;}
 .ir {text-indent: -9999px;}
 .font-red {color: $font-second-color;}
-.no-pad {
+.mobile .no-pad {
     padding: 0;
 }
 @mixin quick-gradient ($origin: top, $alpha: 0.3) {
@@ -54,12 +81,22 @@ p {font-size: 1.4em;}
     background-image: -ms-linear-gradient($origin, rgba(0,0,0,$alpha), rgba(0,0,0,0.0));
     background-image: linear-gradient($origin, rgba(0,0,0,$alpha), rgba(0,0,0,0.0));
 }
- 
+.gradient {
+    height: 100vh;width: 100%;
+    position: absolute;
+    top: 0;left: 0;
+    z-index: -1;
+    @include quick-gradient(top, 0.4);
+}
 
 //*  custom style  *// 
 .slide {
     width: 100%;
     height: 100vh;
+    min-height: 610px;
+    body:not(.mobile) & {
+        text-align: left;
+    }
     &:not(.landing) {
         padding-top: 50px;
         padding-bottom: 50px;
@@ -70,7 +107,11 @@ p {font-size: 1.4em;}
 
     }
     .watch {
-        float: none;
+        body.mobile & {
+            margin-left: auto;
+            margin-right: auto;
+            float: none;
+        }
         position: relative;
         padding: 0;
         margin-bottom: 50px;
@@ -91,6 +132,10 @@ p {font-size: 1.4em;}
                 right: 0;
                 margin: auto;
             }
+            @media screen and (min-width: $screen-md-min) {
+                margin: 0 auto;
+                width: 50%;
+            }
         }
         &:after {
             content: "";
@@ -101,6 +146,10 @@ p {font-size: 1.4em;}
     p {
         margin-top: 15px;
         padding: 0 10px;
+        @media screen and (min-width: $screen-md-min) {
+            padding-left: 0;
+            padding-right: 0;
+        }
         @media screen and (device-aspect-ratio: 40/71) {
             padding: 0;
             font-size: 1.3em;
@@ -109,11 +158,20 @@ p {font-size: 1.4em;}
     h2 + h2 {
         margin-top: 5px;
     }
+    .watch + div {
+        body:not(.mobile) & {
+            margin-top: 15%;
+            padding-right: 100px;
+        }
+    }
 }
 
 .landing {
-    height: auto;
-    @include quick-gradient(top, 0.4);
+    height: auto; 
+    min-height: 357px !important;
+    text-align: center !important;
+    padding-top: 30px;
+
 
     .main-heading {
         margin-bottom: 30px;
@@ -121,7 +179,7 @@ p {font-size: 1.4em;}
     .logo {
         width: 45px;height: 45px;
         background: url(../images/logo-dayone.png) no-repeat center center;
-        display: block; margin: 30px auto 60px;
+        display: block; margin: 0 auto 60px;
         background-size: 100%;
     }
     .cta {
@@ -205,6 +263,7 @@ p {font-size: 1.4em;}
 }
 footer {
     $footerHeight: 2.5em;
+    white-space: nowrap;
     height: $footerHeight;line-height: $footerHeight;
     border-top: 1px solid rgba(255,255,255,0.6);
     a {

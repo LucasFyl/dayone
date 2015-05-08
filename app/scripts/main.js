@@ -51,13 +51,16 @@ function animateScreens() {
 	if ( slide.first ) {
 		TweenMax.to('#first .screen', 0.75, {opacity:1,ease:Power2.easeIn});
 	} else if ( slide.second ) {
-		TweenMax.to('.slide:nth-child(3) .screen:not(.visible)', 0.5, {opacity:1,ease:Power2.easeInOut,delay:0.5});
+		TweenMax.to('.slide:nth-child(3) .screen:not(.visible)', 0.5, {opacity:1,ease:Power2.easeInOut,delay:0.35});
 	} else if ( slide.third ) {
-		TweenMax.to('.slide:nth-child(4) .screen:not(.visible)', 0.5, {opacity:1,ease:Power2.easeInOut,delay:0.5});
+		TweenMax.to('.slide:nth-child(4) .screen:not(.visible)', 0.5, {opacity:1,ease:Power2.easeInOut,delay:0.35});
 	} else if ( slide.fourth ) {
 		TweenMax.to('.slide:nth-child(5) .screen', 1, {opacity:1,ease:Power2.easeIn});
+	} else if ( my.topOffset < (my.slideH*4) + my.landingH ) {
+		TweenMax.to('.arrow-down', 0.25, {opacity:0});
 	}
 }
+
 
 $( document ).ready(function(){
 	// Requiered by iScroll 
@@ -88,8 +91,8 @@ $( document ).ready(function(){
 
 	$('.landing h4, .landing h1, .slide#first .watch').addClass('from-bottom');
 	$('.landing p, .cta').addClass('fadeIn');
-
 });
+
 
 $( window ).load(function() {
 	// console.dir(myScroll.options);
@@ -113,5 +116,17 @@ $( window ).load(function() {
     // arrow down behaviour :
     $('body').on('click', '.arrow-down', arrowDownNavigation);
 	
+    // Imprint link
+	$('body').on('click', '.imprint-link', function(){
+		TweenMax.set('#imprint', {display:'block',onComplete:function(){
+			TweenMax.to('#imprint', 0.5, {opacity:1,ease:Power3.easeOut});
+		}});
+	});
+	$('body').on('click', '.close-imprint', function(){
+		TweenMax.to('#imprint', 0.5, {opacity:0,ease:Power3.easeOut,onComplete:function(){
+			TweenMax.set('#imprint',  {display:'none'});
+		}});
+	});
+
 });
 

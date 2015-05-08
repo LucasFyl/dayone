@@ -133,6 +133,11 @@ p {font-size: 1.4em;}
     cursor: pointer;
     opacity: 0;
     z-index: 99;
+    @media screen and (min-width: $screen-lg-min) {
+        right: 30px;
+        bottom: 40px;
+        background-size: 100%;
+    }
 }
 
 //*  custom style  *// 
@@ -155,6 +160,9 @@ p {font-size: 1.4em;}
             &.last {
                 padding-top: 30px;
             }
+        }
+        @media screen and (min-width: $screen-lg-min) {
+            padding-top: 70px;
         }
     }
     .watch {
@@ -204,6 +212,10 @@ p {font-size: 1.4em;}
         margin-top: 15px;
         // padding: 0 10px;
         font-size: 1.2em;
+        
+        @media screen and (min-width: 375px) {
+            font-size: 1.3em;
+        }
 
         @media screen and (min-width: $screen-md-min) {
             padding-left: 0;
@@ -343,4 +355,42 @@ footer {
         }
     }
 }
+.imprint-link {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+#imprint {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: darken($body-color, 5%);
+    z-index: 99;
+    overflow: hidden;
+    opacity: 0; 
+    display: none;
+    > a {
+        display: block;
+        width: 100%; height: 40px;
+        background: $body-color;
+        text-align: center;
+        text-transform: uppercase;
+        text-decoration: none;
+        line-height: 40px;
+        letter-spacing: 1px; font-size:2em;
+        color:white;font-family: $title-font-reg;
+    }
+    > div {
+        overflow-y: auto;
+        height: 100%;
+        padding: 30px 15px;
 
+        h1 {margin: 0.5em 0;font-size: 3em;}
+        h2 {margin: 1em 0;}
+        h3 {font-size:1.4em; margin-bottom: 0.5em;}
+        p {margin-bottom:1em;font-size:1.2em;}
+        a {color:white;font-family: $title-font-reg;}
+    }
+}

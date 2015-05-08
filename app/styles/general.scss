@@ -1,6 +1,13 @@
-
+// Js prep for animation + no-js fallback
 .landing h4, .landing h1, .landing p, .cta, .slide#first .watch {opacity:0;}
-
+html.no-js {
+    body {overflow:auto;height:100%;}
+    #scroller {position: relative; height:100%;overflow:auto; > div {position:relative;margin-left: -15px;margin-right: -15px;left: 0;right: 0;}}
+    .landing h4, .landing h1, .landing p, .cta, .slide#first .watch {opacity:1;}
+    .slide { min-height: 830px; }
+    .slide > * {width:100%;}
+    .no-pad > * {width:100%;padding-right: 0;}
+}
 
 //*   Variables   *// 
 $body-color: #252627;

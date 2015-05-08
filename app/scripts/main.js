@@ -9,12 +9,62 @@ function loaded () {
 		click: true
 	});
 }
+function arrowDownNavigation() {
+	var my = {
+		slideH : ( $('#first').height() + 30 ) * -1,
+		landingH : ( $('.landing').height() + 30 ) * -1,
+		topOffset : $('#scroller > div').offset().top
+	};
+	var slide = {
+		first : my.topOffset <= my.landingH && my.topOffset > (my.slideH + my.landingH),
+		second :  my.topOffset <= (my.slideH + my.landingH) && my.topOffset > ((my.slideH*2) + my.landingH),
+		third : my.topOffset <= ((my.slideH*2) + my.landingH) && my.topOffset > ((my.slideH*3) + my.landingH),
+		fourth : my.topOffset <= ((my.slideH*3) + my.landingH) && my.topOffset > ((my.slideH*4) + my.landingH)
+	};
+	// console.log(my.slideH, my.landingH, my.topOffset);
+	if ( my.topOffset > my.landingH ) {
+		myScroll.scrollToElement(document.querySelector('#scroller #first'), 800, null, true);
+	} else if ( slide.first ) {
+		myScroll.scrollToElement(document.querySelector('#scroller .slide:nth-child(3)'), 800, null, true);
+	} else if ( slide.second ) {
+		myScroll.scrollToElement(document.querySelector('#scroller .slide:nth-child(4)'), 800, null, true);
+	} else if ( slide.third ) {
+		myScroll.scrollToElement(document.querySelector('#scroller .slide:nth-child(5)'), 800, null, true);
+	} else if ( slide.fourth ) {
+		myScroll.scrollToElement(document.querySelector('#scroller .slide.last'), 800, null, null);
+		TweenMax.to('.arrow-down', 0.25, {opacity:1});
+	}
+}
+function animateScreens() {
+	var my = {
+		slideH : ( $('#first').height() + 30 ) * -1,
+		landingH : ( $('.landing').height() + 30 ) * -1,
+		topOffset : $('#scroller > div').offset().top
+	};
+	var slide = {
+		first : my.topOffset <= my.landingH && my.topOffset > (my.slideH + my.landingH),
+		second :  my.topOffset <= (my.slideH + my.landingH) && my.topOffset > ((my.slideH*2) + my.landingH),
+		third : my.topOffset <= ((my.slideH*2) + my.landingH) && my.topOffset > ((my.slideH*3) + my.landingH),
+		fourth : my.topOffset <= ((my.slideH*3) + my.landingH) && my.topOffset > ((my.slideH*4) + my.landingH)
+	};
 
-document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+	if ( slide.first ) {
+		TweenMax.to('#first .screen', 0.75, {opacity:1,ease:Power2.easeIn});
+	} else if ( slide.second ) {
+		TweenMax.to('.slide:nth-child(3) .screen:not(.visible)', 0.5, {opacity:1,ease:Power2.easeInOut,delay:0.5});
+	} else if ( slide.third ) {
+		TweenMax.to('.slide:nth-child(4) .screen:not(.visible)', 0.5, {opacity:1,ease:Power2.easeInOut,delay:0.5});
+	} else if ( slide.fourth ) {
+		TweenMax.to('.slide:nth-child(5) .screen', 1, {opacity:1,ease:Power2.easeIn});
+	}
+}
 
 $( document ).ready(function(){
-	var isMobile = window.matchMedia('only screen and (max-width: 760px)');
+	// Requiered by iScroll 
+	document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 
+	// Add .mobile class to body if so
+	var isMobile = window.matchMedia('only screen and (max-width: 760px)');
     if (isMobile.matches) {
         //Conditional script here
         console.log('It\'s Mobile !');
@@ -52,7 +102,7 @@ $( window ).load(function() {
 
     // Hide arrow down when page is scrolling
     myScroll.on('scrollStart', function(){ TweenMax.to('.arrow-down', 0.25, {opacity:0}); });
-    myScroll.on('scrollEnd', function(){ TweenMax.to('.arrow-down', 0.25, {opacity:1}); });
+    myScroll.on('scrollEnd', function(){ TweenMax.to('.arrow-down', 0.25, {opacity:1}); animateScreens(); });
 
     // arrow-link trigger first scroll : 
     $('body').on('click', '.cta a', function(){
@@ -61,32 +111,7 @@ $( window ).load(function() {
     });
 
     // arrow down behaviour :
-    $('body').on('click', '.arrow-down', function(){
-    	var my = {
-    		slideH : ( $('#first').height() + 30 ) * -1,
-			landingH : ( $('.landing').height() + 30 ) * -1,
-			topOffset : $('#scroller > div').offset().top
-    	};
-    		
-    	console.log(my.slideH, my.landingH, my.topOffset);
-
-    	if ( my.topOffset > my.landingH ) {
-    		// move to the first 
-    		myScroll.scrollToElement(document.querySelector('#scroller #first'), 800, null, true);
-    	} else if ( my.topOffset <= my.landingH && my.topOffset > (my.slideH + my.landingH) ) {
-    		// move to the second one
-    		myScroll.scrollToElement(document.querySelector('#scroller .slide:nth-child(3)'), 800, null, true);
-    	} else if ( my.topOffset <= (my.slideH + my.landingH) && my.topOffset > ((my.slideH*2) + my.landingH) ) {
-    		// move to third
-    		myScroll.scrollToElement(document.querySelector('#scroller .slide:nth-child(4)'), 800, null, true);
-    	} else if ( my.topOffset <= ((my.slideH*2) + my.landingH) && my.topOffset > ((my.slideH*3) + my.landingH) ) {
-    		// move to fourth
-    		myScroll.scrollToElement(document.querySelector('#scroller .slide:nth-child(5)'), 800, null, true);
-    	} else if ( my.topOffset <= ((my.slideH*3) + my.landingH) && my.topOffset > ((my.slideH*4) + my.landingH) ) {
-    		// move to fourth
-    		myScroll.scrollToElement(document.querySelector('#scroller .slide.last'), 800, null, null);
-    		TweenMax.to('.arrow-down', 0.25, {opacity:1});
-    	}
-    });
+    $('body').on('click', '.arrow-down', arrowDownNavigation);
+	
 });
 

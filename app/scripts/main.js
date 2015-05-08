@@ -50,13 +50,13 @@ function animateScreens() {
 	};
 
 	if ( slide.first ) {
-		TweenMax.to('#first .screen', 0.75, {opacity:1,ease:Power2.easeIn});
+		TweenMax.to('#first .screen', 0.5, {opacity:1,ease:Power2.easeInOut});
 	} else if ( slide.second ) {
-		TweenMax.to('.slide:nth-child(3) .screen:not(.visible)', 0.5, {opacity:1,ease:Power2.easeInOut,delay:0.35});
+		TweenMax.to('.slide:nth-child(3) .screen', 0.5, {opacity:1,ease:Power2.easeInOut,delay:0.35});
 	} else if ( slide.third ) {
-		TweenMax.to('.slide:nth-child(4) .screen:not(.visible)', 0.5, {opacity:1,ease:Power2.easeInOut,delay:0.35});
+		TweenMax.to('.slide:nth-child(4) .screen', 0.5, {opacity:1,ease:Power2.easeInOut,delay:0.35});
 	} else if ( slide.fourth ) {
-		TweenMax.to('.slide:nth-child(5) .screen', 1, {opacity:1,ease:Power2.easeIn});
+		TweenMax.to('.slide:nth-child(5) .screen', 0.5, {opacity:1,ease:Power2.easeInOut});
 	} else if ( my.topOffset < (my.slideH*4) + my.landingH ) {
 		TweenMax.to('.arrow-down', 0.25, {opacity:0});
 	}

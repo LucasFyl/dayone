@@ -143,7 +143,13 @@ p {font-size: 1.4em;}
 .slide {
     width: 100%;
     height: 100vh;
-    min-height: 610px;
+    margin: 50px auto;
+    div{
+        &:last-child {
+            margin-bottom: 1px;
+        }
+    }
+    // min-height: 610px;
     body:not(.mobile) & {
         text-align: left;
     }
@@ -165,6 +171,9 @@ p {font-size: 1.4em;}
         }
     }
     .watch {
+        // width: auto;
+        min-height: 400px;
+
         body.mobile & {
             margin-left: auto;
             margin-right: auto;
@@ -173,6 +182,8 @@ p {font-size: 1.4em;}
         position: relative;
         padding: 0;
         margin-bottom: 50px;
+        margin-top: 15px;
+
         @media screen and (device-aspect-ratio: 40/71) {
             margin-bottom: 30px;
         }
@@ -181,24 +192,45 @@ p {font-size: 1.4em;}
         img {
             display: block;
             width: 100%;
-            height: auto;
+            width: 216px;
+            height: 400px;
+            left: 50%;
+            margin-left: -113px;
+
+            position: absolute;
+            z-index: 3;
             &.screen {
-                position: absolute;
-                top: 0;
-                left: 0;
-                bottom: 0;
-                right: 0;
-                margin: auto;
-                opacity: 0;
                 z-index: 9;
+                opacity: 0;
                 &.visible {
-                    opacity: 1;
                     z-index: 5;
+                    opacity: 1;
                 }
             }
+            // &.screen {
+            //     position: absolute;
+            //     top: 22px;
+            //     left: 0;
+            //     bottom: 0;
+            //     right: 0;
+            //     margin: auto;
+            //     opacity: 0;
+            //     z-index: 9;
+            //     &.visible {
+            //         opacity: 1;
+            //         z-index: 5;
+            //     }
+            //     @media screen and (min-width: $screen-md-min) {
+            //         top: 70px;
+            //         width: 40%;
+            //     }
+            // }
+
             @media screen and (min-width: $screen-md-min) {
-                margin: 0 auto;
-                width: 50%;
+                width: auto;
+                left: 350px;
+                top: 20px;
+                height: 600px;
             }
         }
         &:after {
@@ -230,7 +262,7 @@ p {font-size: 1.4em;}
     }
     .watch + div {
         body:not(.mobile) & {
-            margin-top: 15%;
+            margin-top: 17.5%;
             padding-right: 100px;
         }
     }
@@ -238,8 +270,10 @@ p {font-size: 1.4em;}
 
 .landing {
     height: auto; 
-    min-height: 357px !important;
+    max-height: 357px !important;
     text-align: center !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
     padding-top: 30px;
 
     p {  font-size: 1.6em; }
@@ -255,13 +289,14 @@ p {font-size: 1.4em;}
     }
     .cta {
         margin-top: 60px;
+        width: 100%; height: auto;
         /*  Fallback for iPhone 2 -> 4S  */
         @media screen and (device-aspect-ratio: 2/3) {margin-top: 40px;}
         /* ..and iPhone 6 /6+ */ 
-        @media screen and (device-aspect-ratio: 375/667) {margin-top: 80px;}
-        @media screen and (device-aspect-ratio: 9/16) {margin-top: 80px;}
+        @media screen and (device-aspect-ratio: 375/667) {margin-top: 50px;}
+        @media screen and (device-aspect-ratio: 9/16) {margin-top: 50px;}
 
-        a {
+        .ir {
             width: 50px; height: 29px;
             display: block;
             background: url(../images/arrow-landing.png) no-repeat center center;
@@ -278,6 +313,9 @@ p {font-size: 1.4em;}
 }
 .last {
     height: auto;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+
     .social {
         margin: 50px 0;
         a {
@@ -322,6 +360,10 @@ p {font-size: 1.4em;}
         margin: 95px auto 50px;
         position: relative;
         font-size: 1.3em;
+        text-decoration: none;
+        &:hover {
+            text-decoration: none;
+        }
         &.icon-share{
             &:after {
                 content: " ";
@@ -331,6 +373,25 @@ p {font-size: 1.4em;}
                 top: -60px;
                 left: 50%; margin-left: -20px;
                 background-size: 50%; 
+            }
+        }
+        span {
+            display: inline-block !important;
+        }
+        span.mobile {
+            @media screen and (max-width: $screen-xs-max) {
+                display: block !important;
+            }
+            @media screen and (min-width: $screen-md-min) {
+                display: none !important;
+            }
+        }
+        span.desktop {
+            @media screen and (max-width: $screen-xs-max) {
+                display: none !important;
+            }
+            @media screen and (min-width: $screen-md-min) {
+                display: inline-block !important;
             }
         }
     }

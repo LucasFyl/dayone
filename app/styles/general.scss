@@ -94,7 +94,7 @@ h1, h2, h3, h4, h5 {
 }
 h1 {font-size: 4em;}
 h2 {
-    font-size: 1.8em; 
+    font-size: 1.7em; 
     font-family: $title-font-reg; 
     letter-spacing: 1px;
     @media screen and (device-aspect-ratio: 40/71) {font-size:1.6em;}
@@ -342,9 +342,9 @@ p {font-size: 1.4em;}
     }
 }
 footer {
-    $footerHeight: 2.5em;
+    $footerHeight: 4em;
     white-space: nowrap;
-    height: $footerHeight;line-height: $footerHeight;
+    height: $footerHeight; line-height: $footerHeight;
     border-top: 1px solid rgba(255,255,255,0.6);
     a {
         color: white !important;
@@ -380,12 +380,22 @@ footer {
         line-height: 40px;
         letter-spacing: 1px; font-size:2em;
         color:white;font-family: $title-font-reg;
+        position: fixed; top:0; z-index: 9999;
     }
-    > div {
-        overflow-y: auto;
-        height: 100%;
+    > div.imprint-content {
+        height: 100%; overflow: auto;
         padding: 30px 15px;
-        max-width: 600px; margin: 0 auto;
+        @media screen and (min-width: $screen-md-min) {
+            max-width: 600px; margin: 0 auto;            
+        }
+        position: relative;
+
+        > div {
+            position: absolute;
+            top: 0; right: 0;
+            height: auto;
+            min-height: 100%;
+        }
 
         h1 {margin: 0.5em 0;font-size: 3em;}
         h2 {margin: 1em 0;}

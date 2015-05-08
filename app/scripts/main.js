@@ -1,5 +1,6 @@
 
 var myScroll,
+	imprintScroll,
 	iOS = false,
     p = navigator.platform;
 
@@ -119,12 +120,17 @@ $( window ).load(function() {
     // Imprint link
 	$('body').on('click', '.imprint-link', function(){
 		TweenMax.set('#imprint', {display:'block',onComplete:function(){
+			var imprintScroll = new IScroll('.imprint-content', {
+			    mouseWheel: true,
+			    scrollbars: true
+			});
 			TweenMax.to('#imprint', 0.5, {opacity:1,ease:Power3.easeOut});
 		}});
 	});
 	$('body').on('click', '.close-imprint', function(){
 		TweenMax.to('#imprint', 0.5, {opacity:0,ease:Power3.easeOut,onComplete:function(){
 			TweenMax.set('#imprint',  {display:'none'});
+			imprintScroll.destroy();
 		}});
 	});
 

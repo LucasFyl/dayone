@@ -5,6 +5,10 @@ function loaded () {
 		click: true
 	});
 }
+var iOS = false,
+    p = navigator.platform;
+
+
 
 document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 
@@ -30,6 +34,14 @@ $( document ).ready(function(){
 
 $( window ).load(function() {
 	loaded();
+	if( p === 'iPad' || p === 'iPhone' || p === 'iPod' ){
+		iOS = true;
+	}
+	if ( iOS === true ) {
+		$('.share').addClass('icon-share');
+	} else {
+		console.log('not iOS');
+	}
 
     //  Landing part animation : 
     TweenMax.set('.from-bottom', {y:50});

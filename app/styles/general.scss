@@ -107,7 +107,7 @@ p {font-size: 1.4em;}
 .smaller {font-size:1em;text-transform:uppercase;color: #fff;}
 .ir {text-indent: -9999px;}
 .font-red {color: $font-second-color;}
-.mobile .no-pad {padding: 0;}
+// .mobile .no-pad {padding: 0;}
 .hide-for-anim {opacity: 0;}
 @mixin quick-gradient ($origin: top, $alpha: 0.3) {
     background-image: -webkit-linear-gradient($origin, rgba(0,0,0,$alpha), rgba(0,0,0,0.0));
@@ -128,7 +128,8 @@ p {font-size: 1.4em;}
     bottom: 10px; right: 10px;
     width: 44px; height: 28px;
     background: url(../images/arrow-down.png) no-repeat center center;
-    background-size: 50%;
+    background-size: 42%;
+    background-position-x: 100%;
     cursor: pointer;
     opacity: 0;
     z-index: 99;
@@ -143,7 +144,7 @@ p {font-size: 1.4em;}
         text-align: left;
     }
     &:not(.landing) {
-        padding-top: 60px;
+        padding-top: 30px;
         padding-bottom: 50px;
         &.last {
             padding-top: 40px;
@@ -181,6 +182,7 @@ p {font-size: 1.4em;}
                 bottom: 0;
                 right: 0;
                 margin: auto;
+                opacity: 0;
             }
             @media screen and (min-width: $screen-md-min) {
                 margin: 0 auto;
@@ -195,14 +197,16 @@ p {font-size: 1.4em;}
     }
     p {
         margin-top: 15px;
-        padding: 0 10px;
+        // padding: 0 10px;
+        font-size: 1.2em;
+
         @media screen and (min-width: $screen-md-min) {
             padding-left: 0;
             padding-right: 0;
         }
         @media screen and (device-aspect-ratio: 40/71) {
-            padding: 0;
-            font-size: 1.3em;
+            // padding: 0;
+            // font-size: 1.3em;
         }
     }
     h2 + h2 {
@@ -222,6 +226,7 @@ p {font-size: 1.4em;}
     text-align: center !important;
     padding-top: 30px;
 
+    p {  font-size: 1.6em; }
 
     .main-heading {
         margin-bottom: 30px;
@@ -263,7 +268,7 @@ p {font-size: 1.4em;}
             width: 85px; height: 85px;
             display: block;margin: 15px auto;
             border-radius: 100%;
-            border: 1px solid #fff;
+            border: 2px solid #fff;
             position: relative;
 
             margin-bottom: 40px;
@@ -293,6 +298,7 @@ p {font-size: 1.4em;}
     .social + p {
         margin: 70px auto 0;
         width: 80%;
+        padding:0 30px;
     }
     .share {
         color: $font-second-color !important;
@@ -300,14 +306,22 @@ p {font-size: 1.4em;}
         margin: 95px auto 50px;
         position: relative;
         font-size: 1.3em;
-        &:after {
-            content: " ";
-            width: 40px; height: 58px;
-            background: url(../images/icon-share.png) no-repeat center center;
-            position: absolute;
-            top: -60px;
-            left: 50%; margin-left: -20px;
-            background-size: 50%; 
+        &.icon-share{
+            &:after {
+                content: " ";
+                width: 40px; height: 58px;
+                background: url(../images/icon-share.png) no-repeat center center;
+                position: absolute;
+                top: -60px;
+                left: 50%; margin-left: -20px;
+                background-size: 50%; 
+            }
+        }
+    }
+    .main-heading + p {
+        font-size: 1.6em;
+        @media screen and ( max-width: 320px ) {
+            font-size: 1.4em;
         }
     }
 }

@@ -1,9 +1,7 @@
-// .scriptDisabled {
-    .landing h4, .landing h1, .landing p, .cta, .slide#first .watch {opacity:0;}
-    // .scriptDisabled {
-    //     h4, h1, .landing p, .cta, .slide#first .watch {opacity:1;}
-    // }
-// }
+
+.landing h4, .landing h1, .landing p, .cta, .slide#first .watch {opacity:0;}
+
+
 //*   Variables   *// 
 $body-color: #252627;
 $font-title-color: #fff;
@@ -14,7 +12,6 @@ $title-font-reg: 'BentonSans-Regular', Helvetica, sans-serif;
 $body-font: 'BentonSans-Light', Helvetica, sans-serif;
 
 //* Media Queries Breackpoints *// 
-
 // Extra small screen / phone
 $screen-xs:                  480px;
 $screen-xs-min:              $screen-xs;
@@ -34,6 +31,9 @@ $screen-md-max:              ($screen-lg-min - 1);
 
 
 //*  general style  *// 
+html {
+    -ms-touch-action: none;
+}
 html,body{
     width: 100%;
     height: 100%;
@@ -48,6 +48,8 @@ body {
     color: $font-body-color;
     font-family: $body-font;
     text-align: center;
+    overflow: hidden;
+
     &.mobile {
         // fix for unsmooth scroll issue
         -webkit-overflow-scrolling: touch;
@@ -55,6 +57,27 @@ body {
 
     &:not(.mobile) {
         font-size: 13px;
+    }
+
+    #scroller {
+        position: relative;
+        height: auto;
+        min-height: 100%;
+        max-height: 90%;
+        width: 100%;
+        margin: 0;
+        z-index: 1;
+        overflow: hidden; 
+
+        > div {
+            position: absolute;
+            z-index: 1;
+            margin: 0;
+            left: -15px;
+            right: -15px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
     }
 }
 h1, h2, h3, h4, h5 {

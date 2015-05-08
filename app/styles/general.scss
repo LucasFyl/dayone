@@ -126,14 +126,13 @@ p {font-size: 1.4em;}
 .arrow-down {
     position: fixed;
     bottom: 10px; right: 10px;
-    width: 44px; height: 28px;
+    width: 44px; height: 44px;
     background: url(../images/arrow-down.png) no-repeat center center;
-    background-size: 42%;
-    background-position-x: 100%;
+    background-size: 100%;
     cursor: pointer;
     opacity: 0;
-    z-index: 99;
-    @media screen and (min-width: $screen-lg-min) {
+    z-index: 999;
+    @media screen and (min-width: $screen-md-min) {
         right: 30px;
         bottom: 40px;
         background-size: 100%;
@@ -161,7 +160,7 @@ p {font-size: 1.4em;}
                 padding-top: 30px;
             }
         }
-        @media screen and (min-width: $screen-lg-min) {
+        @media screen and (min-width: $screen-md-min) {
             padding-top: 70px;
         }
     }
@@ -386,6 +385,7 @@ footer {
         overflow-y: auto;
         height: 100%;
         padding: 30px 15px;
+        max-width: 600px; margin: 0 auto;
 
         h1 {margin: 0.5em 0;font-size: 3em;}
         h2 {margin: 1em 0;}

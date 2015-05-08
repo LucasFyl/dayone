@@ -19,6 +19,8 @@
   "smarttabs": true,
   "jquery": true,
   "globals": {
+    // IScroll Globals
+    "IScroll": true,
     //GSAP Globals
     "TimelineLite" : false,
     "TimelineMax" : false,

@@ -20,7 +20,7 @@ $( document ).ready(function(){
 		  myScroll.scrollBy(0, -1);
 		}, 800);
     } else {
-        console.log('It\'s Not !');
+        console.log('It\'s Not Mobile!');
     }
 
 	$('.landing h4, .landing h1, .slide#first .watch').addClass('from-bottom');
@@ -37,12 +37,8 @@ $( window ).load(function() {
     TweenMax.staggerTo('.fadeIn', 0.8, {opacity:1,ease:Power3.easeOut,delay:1.2}, 0.1);
 
     // Hide arrow down when page is scrolling
-    myScroll.on('scrollStart', function(){
-    	TweenMax.to('.arrow-down', 0.25, {opacity:0});
-    });
-    myScroll.on('scrollEnd', function(){
-    	TweenMax.to('.arrow-down', 0.25, {opacity:1});
-    });
+    myScroll.on('scrollStart', function(){ TweenMax.to('.arrow-down', 0.25, {opacity:0}); });
+    myScroll.on('scrollEnd', function(){ TweenMax.to('.arrow-down', 0.25, {opacity:1}); });
 
     // arrow-link trigger first scroll : 
     $('body').on('click', '.cta a', function(){
@@ -52,8 +48,31 @@ $( window ).load(function() {
 
     // arrow down behaviour :
     $('body').on('click', '.arrow-down', function(){
-    	var winH = $(window).height();
+    	var my = {
+    		slideH : ( $('#first').height() + 30 ) * -1,
+			landingH : ( $('.landing').height() + 30 ) * -1,
+			topOffset : $('#scroller > div').offset().top
+    	};
+    		
+    	console.log(my.slideH, my.landingH, my.topOffset);
 
+    	if ( my.topOffset > my.landingH ) {
+    		// move to the first 
+    		myScroll.scrollToElement(document.querySelector('#scroller #first'), 800, null, true);
+    	} else if ( my.topOffset <= my.landingH && my.topOffset > (my.slideH + my.landingH) ) {
+    		// move to the second one
+    		myScroll.scrollToElement(document.querySelector('#scroller .slide:nth-child(3)'), 800, null, true);
+    	} else if ( my.topOffset <= (my.slideH + my.landingH) && my.topOffset > ((my.slideH*2) + my.landingH) ) {
+    		// move to third
+    		myScroll.scrollToElement(document.querySelector('#scroller .slide:nth-child(4)'), 800, null, true);
+    	} else if ( my.topOffset <= ((my.slideH*2) + my.landingH) && my.topOffset > ((my.slideH*3) + my.landingH) ) {
+    		// move to fourth
+    		myScroll.scrollToElement(document.querySelector('#scroller .slide:nth-child(5)'), 800, null, true);
+    	} else if ( my.topOffset <= ((my.slideH*3) + my.landingH) && my.topOffset > ((my.slideH*4) + my.landingH) ) {
+    		// move to fourth
+    		myScroll.scrollToElement(document.querySelector('#scroller .slide.last'), 800, null, null);
+    		TweenMax.to('.arrow-down', 0.25, {opacity:1});
+    	}
     });
 });
 

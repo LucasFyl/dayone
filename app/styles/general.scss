@@ -136,13 +136,18 @@ p {font-size: 1.4em;}
         text-align: left;
     }
     &:not(.landing) {
-        padding-top: 50px;
+        padding-top: 60px;
         padding-bottom: 50px;
-        @media screen and (device-aspect-ratio: 40/71) {
-            padding-top: 30px;
-            padding-bottom: 30px;
+        &.last {
+            padding-top: 40px;
         }
-
+        @media screen and (device-aspect-ratio: 40/71) {
+            padding-top: 40px;
+            padding-bottom: 30px;
+            &.last {
+                padding-top: 30px;
+            }
+        }
     }
     .watch {
         body.mobile & {

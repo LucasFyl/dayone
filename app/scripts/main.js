@@ -1,19 +1,18 @@
-var myScroll;
+
+var myScroll,
+	iOS = false,
+    p = navigator.platform;
+
 function loaded () {
 	myScroll = new IScroll('#scroller', { 
 		mouseWheel: true, 
 		click: true
 	});
 }
-var iOS = false,
-    p = navigator.platform;
-
-
 
 document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 
 $( document ).ready(function(){
-	// $('body').removeClass("scriptDisabled");
 	var isMobile = window.matchMedia('only screen and (max-width: 760px)');
 
     if (isMobile.matches) {
@@ -21,19 +20,13 @@ $( document ).ready(function(){
         console.log('It\'s Mobile !');
         $('body').addClass('mobile');
         setTimeout(function () {
-		  myScroll.scrollBy(0, -1);
+		  // myScroll.scrollBy(0, -1);
 		}, 800);
     } else {
         console.log('It\'s Not Mobile!');
     }
 
-	$('.landing h4, .landing h1, .slide#first .watch').addClass('from-bottom');
-	$('.landing p, .cta').addClass('fadeIn');
-
-});
-
-$( window ).load(function() {
-	loaded();
+	// Detect if iOS and asign class
 	if( p === 'iPad' || p === 'iPhone' || p === 'iPod' ){
 		iOS = true;
 	}
@@ -42,6 +35,15 @@ $( window ).load(function() {
 	} else {
 		console.log('not iOS');
 	}
+
+	$('.landing h4, .landing h1, .slide#first .watch').addClass('from-bottom');
+	$('.landing p, .cta').addClass('fadeIn');
+
+});
+
+$( window ).load(function() {
+	// console.dir(myScroll.options);
+	loaded();
 
     //  Landing part animation : 
     TweenMax.set('.from-bottom', {y:50});
@@ -55,7 +57,7 @@ $( window ).load(function() {
     // arrow-link trigger first scroll : 
     $('body').on('click', '.cta a', function(){
     	myScroll.scrollToElement(document.querySelector('#scroller #first'), 1000);
-    	TweenMax.to('.arrow-down', 0.25, {opacity:1});
+    	setTimeout(function(){TweenMax.to('.arrow-down', 0.25, {opacity:1});}, 500);
     });
 
     // arrow down behaviour :

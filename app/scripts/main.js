@@ -4,7 +4,8 @@ var myScroll,
 	iOS = false,
     p = navigator.platform,
     nua = navigator.userAgent,
-	is_android = ((nua.indexOf('Mozilla/5.0') > -1 && nua.indexOf('Android ') > -1 &&     nua.indexOf('AppleWebKit') > -1) && !(nua.indexOf('Chrome') > -1));
+	is_android = ((nua.indexOf('Mozilla/5.0') > -1 && nua.indexOf('Android ') > -1 &&     nua.indexOf('AppleWebKit') > -1) && !(nua.indexOf('Chrome') > -1)),
+	isMobile = window.matchMedia('only screen and (max-width: 760px)');
 
 function loaded () {
 	myScroll = new IScroll('#scroller', { 
@@ -78,14 +79,19 @@ function animateScreens() {
 		TweenMax.to('.arrow-down', 0.25, {opacity:0});
 	}
 }
-
+function verticalCenter() {
+	$('.slide').each(function(){
+		var el = $(this).find('.no-pad'),
+			mt = '-' + (el.height() / 2) + 'px';
+		TweenMax.set(el, {marginTop:mt});
+	});
+}
 
 $( document ).ready(function(){
 	// Requiered by iScroll 
 	document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 
 	// Add .mobile class to body if so
-	var isMobile = window.matchMedia('only screen and (max-width: 760px)');
     if (isMobile.matches) {
         //Conditional script here
         console.log('It\'s Mobile !');
@@ -116,7 +122,8 @@ $( window ).load(function() {
 	// console.dir(myScroll.options);
 	loaded();
 	slidesSize();
-	
+
+	if ( isMobile.matches ) { } else { verticalCenter(); }
 	if(is_android) { $('body').addClass('android'); } 
 
     //  Landing part animation : 

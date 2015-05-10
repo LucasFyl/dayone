@@ -98,6 +98,7 @@ h2 {
     font-family: $title-font-reg; 
     letter-spacing: 1px;
     @media screen and (device-aspect-ratio: 40/71) {font-size:1.6em;}
+    @media screen and (max-width: 320px) {font-size:1.5em;}
 }
 h4 {font-size: 1.4em;}
 p {font-size: 1.4em;}
@@ -116,6 +117,16 @@ p {font-size: 1.4em;}
     background-image: -ms-linear-gradient($origin, rgba(0,0,0,$alpha), rgba(0,0,0,0.0));
     background-image: linear-gradient($origin, rgba(0,0,0,$alpha), rgba(0,0,0,0.0));
 }
+@mixin transform($transforms) {
+       -moz-transform: $transforms;
+         -o-transform: $transforms;
+        -ms-transform: $transforms;
+    -webkit-transform: $transforms;
+            transform: $transforms;
+}
+@mixin scale($scale) {
+    @include transform(scale($scale));
+} 
 .gradient {
     height: 100vh;width: 100%;
     position: absolute;
@@ -187,6 +198,11 @@ p {font-size: 1.4em;}
         @media screen and (device-aspect-ratio: 40/71) {
             margin-bottom: 30px;
         }
+        @media screen and (max-width: 320px) {
+            margin-top: -30px;
+            margin-bottom: 30px;
+            @include scale(0.8);
+        }
 
 
         img {
@@ -205,6 +221,7 @@ p {font-size: 1.4em;}
                 &.visible {
                     z-index: 5;
                     opacity: 1;
+                    @include scale(0.9);
                 }
             }
             // &.screen {
@@ -261,6 +278,9 @@ p {font-size: 1.4em;}
         margin-top: 5px;
     }
     .watch + div {
+        @media screen and (max-width:320px) {
+            margin-top: -40px;
+        }
         body:not(.mobile) & {
             margin-top: 17.5%;
             padding-right: 100px;
@@ -319,42 +339,46 @@ p {font-size: 1.4em;}
     .social {
         margin: 50px 0;
         a {
-            width: 85px; height: 85px;
-            display: block;margin: 15px auto;
-            border-radius: 100%;
-            border: 2px solid #fff;
+            width: 100%; height:auto;
             position: relative;
-
             margin-bottom: 40px;
-            background: url(../images/icon-mail.png) no-repeat center center;
-            background-size: 50%;
-            &:after {
-                content: "send email";
+            display: block;
+            span.icon {
+                width: 85px; height: 85px;
+                display: block;margin: 15px auto;
+                border-radius: 100%;
+                border: 2px solid #fff;
+                background: url(../images/icon-mail.png) no-repeat center center;
+                background-size: 50%;  
+            }
+            span.label {
                 font-family: $title-font-reg;
                 text-transform: uppercase;
                 color: white;
                 font-size: 1.2em;
                 position: absolute;
                 top: 115%; left: 0;
-                width: 100%;
+                width: 100%; text-align: center;
+
                 white-space: nowrap;
             }
         }
         a + a {
-            background: url(../images/icon-facebook.png) no-repeat center center;
-            background-size: 50%;
-            &:after {
-                content: "facebook message";
-                left: -23px;
+            span.icon {
+                background: url(../images/icon-facebook.png) no-repeat center center;
+                background-size: 50%;
             }
         }
     }
     .social + p {
         margin: 70px auto 0;
-        width: 80%;
-        padding:0 30px;
+        width: 100%;
     }
     .share {
+        body.android & {
+            display: none;
+            opacity: 0;
+        }
         color: $font-second-color !important;
         display: block;
         margin: 95px auto 50px;
@@ -451,11 +475,12 @@ footer {
         }
         position: relative;
 
-        > div {
+        > div.wrap {
             position: absolute;
             top: 0; right: 0;
             height: auto;
             min-height: 100%;
+            padding: 0 15px;
         }
 
         h1 {margin: 0.5em 0;font-size: 3em;}

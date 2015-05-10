@@ -139,13 +139,13 @@ p {font-size: 1.4em;}
     bottom: 10px; right: 10px;
     width: 44px; height: 44px;
     background: url(../images/arrow-down.png) no-repeat center center;
-    background-size: 100%;
+    background-size: 50%;
     cursor: pointer;
     opacity: 0;
     z-index: 999;
-    @media screen and (min-width: $screen-md-min) {
+    @media screen and (min-width: $screen-sm-min) {
         right: 30px;
-        bottom: 40px;
+        bottom: 30px;
         background-size: 100%;
     }
 }
@@ -155,6 +155,9 @@ p {font-size: 1.4em;}
     width: 100%;
     height: 100vh;
     margin: 50px auto;
+    @media screen and (min-width: $screen-sm-min) {
+        margin: 0 auto;
+    }
     div{
         &:last-child {
             margin-bottom: 1px;
@@ -194,6 +197,13 @@ p {font-size: 1.4em;}
         padding: 0;
         margin-bottom: 50px;
         margin-top: 15px;
+
+        body:not(.mobile) & {
+            height: 400px;
+            position: absolute;
+            top: 50%;
+            margin-top: -200px;
+        }
 
         @media screen and (device-aspect-ratio: 40/71) {
             margin-bottom: 30px;
@@ -281,8 +291,12 @@ p {font-size: 1.4em;}
         @media screen and (max-width:320px) {
             margin-top: -40px;
         }
+
         body:not(.mobile) & {
-            margin-top: 17.5%;
+            position: absolute;
+            top: 50%;
+            margin-top: -100px;
+            right: 0;
             padding-right: 100px;
         }
     }
@@ -308,6 +322,7 @@ p {font-size: 1.4em;}
         background-size: 100%;
     }
     .cta {
+        a {text-decoration: none;}
         margin-top: 60px;
         width: 100%; height: auto;
         /*  Fallback for iPhone 2 -> 4S  */
@@ -366,6 +381,8 @@ p {font-size: 1.4em;}
             }
         }
         a + a {
+            margin-top: 60px;
+
             span.icon {
                 background: url(../images/icon-facebook.png) no-repeat center center;
                 background-size: 50%;
@@ -486,6 +503,12 @@ footer {
             height: auto;
             min-height: 100%;
             padding: 0 15px;
+            @media screen and (min-width: $screen-sm-min) {
+                width: 66%;
+                right: 50%;
+                margin-right: -33%;
+                padding-bottom: 100px;
+            }
         }
 
         h1 {margin: 0.5em 0;font-size: 3em;}

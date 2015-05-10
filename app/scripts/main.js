@@ -6,18 +6,17 @@ var myScroll,
     nua = navigator.userAgent,
 	is_android = ((nua.indexOf('Mozilla/5.0') > -1 && nua.indexOf('Android ') > -1 &&     nua.indexOf('AppleWebKit') > -1) && !(nua.indexOf('Chrome') > -1)),
 	isMobile = window.matchMedia('only screen and (max-width: 760px)');
-
-function loaded () {
-	myScroll = new IScroll('#scroller', { 
-		mouseWheel: true, 
-		click: true
-	});
-}
 function slidesSize() {
 	var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 	TweenMax.set('.slide:not(.landing)', {height:h,onComplete:function(){
 		TweenMax.set('.slide.last', {height:'auto'});
 	}});
+}
+function loaded () {
+	myScroll = new IScroll('#scroller', { 
+		mouseWheel: true, 
+		click: true
+	});
 }
 function initImprintScroll() {
 	var imprintScroll = new IScroll('.imprint-content', {
@@ -119,9 +118,10 @@ $( document ).ready(function(){
 
 
 $( window ).load(function() {
-	// console.dir(myScroll.options);
-	loaded();
+
+	// Set correct sizes & init myScroll
 	slidesSize();
+	loaded();
 
 	if ( isMobile.matches ) { } else { verticalCenter(); }
 	if(is_android) { $('body').addClass('android'); } 
@@ -153,7 +153,7 @@ $( window ).load(function() {
 	});
 	$('body').on('click', '.close-imprint', function(){
 		TweenMax.to('#imprint', 0.5, {opacity:0,ease:Power3.easeOut,onComplete:function(){
-			new initImprintScroll().killIt();
+			initImprintScroll().killIt();
 			TweenMax.set('#imprint',  {display:'none'});
 		}});
 	});

@@ -146,7 +146,6 @@ p {font-size: 1.4em;}
     @media screen and (min-width: $screen-sm-min) {
         right: 30px;
         bottom: 30px;
-        background-size: 100%;
     }
 }
 
@@ -491,9 +490,6 @@ footer {
     > div.imprint-content {
         height: 100%; overflow: auto;
         padding: 30px 15px;
-        @media screen and (min-width: $screen-md-min) {
-            max-width: 600px; margin: 0 auto;            
-        }
         position: relative;
 
         > div.wrap {

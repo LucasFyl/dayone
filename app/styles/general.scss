@@ -338,11 +338,13 @@ p {font-size: 1.4em;}
 
     .social {
         margin: 50px 0;
+
         a {
             width: 100%; height:auto;
             position: relative;
             margin-bottom: 40px;
             display: block;
+
             span.icon {
                 width: 85px; height: 85px;
                 display: block;margin: 15px auto;
@@ -352,7 +354,7 @@ p {font-size: 1.4em;}
                 background-size: 50%;  
             }
             span.label {
-                font-family: $title-font-reg;
+                font-family: $body-font;
                 text-transform: uppercase;
                 color: white;
                 font-size: 1.2em;
@@ -379,6 +381,7 @@ p {font-size: 1.4em;}
             display: none;
             opacity: 0;
         }
+        cursor: default;
         color: $font-second-color !important;
         display: block;
         margin: 95px auto 50px;
@@ -431,6 +434,8 @@ footer {
     white-space: nowrap;
     height: $footerHeight; line-height: $footerHeight;
     border-top: 1px solid rgba(255,255,255,0.6);
+    font-size: 1.2em;
+
     a {
         color: white !important;
         text-decoration: none !important;

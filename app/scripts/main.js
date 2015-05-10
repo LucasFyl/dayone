@@ -18,6 +18,15 @@ function slidesSize() {
 		TweenMax.set('.slide.last', {height:'auto'});
 	}});
 }
+function initImprintScroll() {
+	var imprintScroll = new IScroll('.imprint-content', {
+	    mouseWheel: true,
+	    scrollbars: true
+	});
+	this.killIt = function() {
+		imprintScroll.destroy();
+	};
+}
 function arrowDownNavigation() {
 	var my = {
 		slideH : ( $('#first').height() + 30 ) * -1,
@@ -115,7 +124,7 @@ $( window ).load(function() {
     TweenMax.staggerTo('.from-bottom', 0.5, {opacity:1,y:0,ease:Power3.easeOut,delay:0.5}, 0.1);
     TweenMax.staggerTo('.fadeIn', 0.8, {opacity:1,ease:Power3.easeOut,delay:1.2}, 0.1);
 
-    // Hide arrow down when page is scrolling
+    // Hide arrow down when page is scrolling + trigger screen animation 
     myScroll.on('scrollStart', function(){ TweenMax.to('.arrow-down', 0.25, {opacity:0}); });
     myScroll.on('scrollEnd', function(){ TweenMax.to('.arrow-down', 0.25, {opacity:1}); animateScreens(); });
 
@@ -131,17 +140,14 @@ $( window ).load(function() {
     // Imprint link
 	$('body').on('click', '.imprint-link', function(){
 		TweenMax.set('#imprint', {display:'block',onComplete:function(){
-			var imprintScroll = new IScroll('.imprint-content', {
-			    mouseWheel: true,
-			    scrollbars: true
-			});
+			initImprintScroll();
 			TweenMax.to('#imprint', 0.5, {opacity:1,ease:Power3.easeOut});
 		}});
 	});
 	$('body').on('click', '.close-imprint', function(){
 		TweenMax.to('#imprint', 0.5, {opacity:0,ease:Power3.easeOut,onComplete:function(){
+			new initImprintScroll().killIt();
 			TweenMax.set('#imprint',  {display:'none'});
-			imprintScroll.destroy();
 		}});
 	});
 
